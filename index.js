@@ -175,7 +175,8 @@ Gosu.parseMatch = function (url, callback){
 		url: url,
 		home: {},
 		away: {},
-		status: 'Unknown'
+		status: 'Unknown',
+		tournament: 'Unknown'
 	};
 
 	var type = url.split('/');
@@ -237,7 +238,9 @@ Gosu.parseMatch = function (url, callback){
 	  		}
 	  	} else if ($('.vs .match-is-live').text()) { // Current Match
 	  		match.status = 'Live';
-				var twitch = $('.matches-streams .match-stream-tab object').attr('data').split("=")[1];
+				if($('.matches-streams .match-stream-tab object').attr('data')) {
+					var twitch = $('.matches-streams .match-stream-tab object').attr('data').split("=")[1];
+				}
 				var twitchurl = "www.twitch.tv/"+twitch;
 				match.livestream = twitchurl;
 				//match.vods.push(twitchurl);
